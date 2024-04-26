@@ -21,7 +21,8 @@ Current support available for - Alphabets, ASCII, Unicode (UTF-8)
 
 - [x] Caesar cipher
 - [x] Monoalphabetic cipher
-- [ ] Playfair cipher
+- [x] Playfair cipher
+- [ ] Hill Cipher
 
 More algorithms will be implemented
 

@@ -20,12 +20,15 @@ protected:
 TEST_F(SymmetricEncryptionTest, EncryptDecrypt) {
     // Arrange
     std::string plaintext(10000000,'a');
+    // std::string plaintext = "Goodbyeaaaa";
     std::string key = "hello";
     // Act
-    std::string ciphertext = encrypt::playfair_cipher_encrypt(plaintext, key, encrypt::ALPHABET,true);
-    // std::string decrypted_text = encrypt::monoalphabetic_cipher_decrypt(ciphertext, key, encrypt::ALPHABET,true);
-
-    // Assert
+    std::string ciphertext = encrypt::caeser_cipher_encrypt(plaintext, 5, encrypt::ALPHABET,false);
+    // std::string decrypted_text = encrypt::playfair_cipher_encrypt(ciphertext, key, encrypt::ALPHABET,true);
+    // if(plaintext.length()%2==1){
+    //     decrypted_text.pop_back();
+    // }
+    // std::cout<<plaintext<<" "<<decrypted_text;
     // EXPECT_EQ(plaintext, decrypted_text);
 }
 

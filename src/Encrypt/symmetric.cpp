@@ -137,6 +137,17 @@ std::string encrypt::playfair_cipher_encrypt(std::string plaintext, std::string 
         char first = plaintext[i];
         char second = (i + 1 < plaintext.length()) ? plaintext[i + 1] : 'X'; // Handle odd-length plaintext
 
+        bool f_cap,s_cap;
+        if(first>54 && first < 91)
+            f_cap = false;
+        else
+            f_cap = true;
+
+        if(second>54 && second < 91)
+            s_cap = false;
+        else
+            s_cap = true;
+
         // Ensure both characters are alphabetic and convert to uppercase
         if (std::isalpha(first)) {
             first = std::toupper(first);
@@ -155,16 +166,35 @@ std::string encrypt::playfair_cipher_encrypt(std::string plaintext, std::string 
 
         if (row1 == row2) {
             // Same row: shift columns to the right (wrap around)
-            processedText += matrix[row1][(col1 + 1) % 5];
-            processedText += matrix[row2][(col2 + 1) % 5];
-        } else if (col1 == col2) {
+            if(!f_cap)
+                processedText += tolower(matrix[row1][(col1 + 1) % 5]);
+            else
+                processedText += matrix[row1][(col1 + 1) % 5];
+            if(!s_cap)
+                processedText += tolower(matrix[row2][(col2 + 1) % 5]);
+            else
+                processedText += matrix[row2][(col2 + 1) % 5];
+        }
+        else if (col1 == col2) {
             // Same column: shift rows downward (wrap around)
-            processedText += matrix[(row1 + 1) % 5][col1];
-            processedText += matrix[(row2 + 1) % 5][col2];
+            if(!f_cap)
+                processedText += tolower(matrix[row1+1][(col1) % 5]);
+            else
+                processedText += matrix[row1+1][(col1) % 5];
+            if(!s_cap)
+                processedText += tolower(matrix[row2+1][(col2) % 5]);
+            else
+                processedText += matrix[row2+1][(col2) % 5];
         } else {
             // Form a rectangle: use the corners of the rectangle
-            processedText += matrix[row1][col2];
-            processedText += matrix[row2][col1];
+            if(!f_cap)
+                processedText += tolower(matrix[row1][(col1) % 5]);
+            else
+                processedText += matrix[row1][(col1) % 5];
+            if(!s_cap)
+                processedText += tolower(matrix[row2][(col2) % 5]);
+            else
+                processedText += matrix[row2][(col2) % 5];
         }
     }
 
@@ -215,6 +245,17 @@ std::string encrypt::playfair_cipher_decrypt(std::string ciphertext,std::string 
         char first = ciphertext[i];
         char second = (i + 1 < ciphertext.length()) ? ciphertext[i + 1] : 'X'; // Handle odd-length ciphertext
 
+        bool f_cap,s_cap;
+        if(first>54 && first < 91)
+            f_cap = false;
+        else
+            f_cap = true;
+
+        if(second>54 && second < 91)
+            s_cap = false;
+        else
+            s_cap = true;
+
         // Ensure both characters are alphabetic and convert to uppercase
         if (std::isalpha(first)) {
             first = std::toupper(first);
@@ -233,16 +274,35 @@ std::string encrypt::playfair_cipher_decrypt(std::string ciphertext,std::string 
 
         if (row1 == row2) {
             // Same row: shift columns to the left (wrap around)
-            decryptedText += matrix[row1][(col1 + 4) % 5];
-            decryptedText += matrix[row2][(col2 + 4) % 5];
+            // Same row: shift columns to the right (wrap around)
+            if(!f_cap)
+                decryptedText += tolower(matrix[row1][(col1 + 4) % 5]);
+            else
+                decryptedText += matrix[row1][(col1 + 4) % 5];
+            if(!s_cap)
+                decryptedText += tolower(matrix[row2][(col2 + 4) % 5]);
+            else
+                decryptedText += matrix[row2][(col2 + 4) % 5];
         } else if (col1 == col2) {
             // Same column: shift rows upward (wrap around)
-            decryptedText += matrix[(row1 + 4) % 5][col1];
-            decryptedText += matrix[(row2 + 4) % 5][col2];
+            if(!f_cap)
+                decryptedText += tolower(matrix[row1+4][(col1) % 5]);
+            else
+                decryptedText += matrix[row1+4][(col1) % 5];
+            if(!s_cap)
+                decryptedText += tolower(matrix[row2+4][(col2) % 5]);
+            else
+                decryptedText += matrix[row2+4][(col2) % 5];
         } else {
             // Form a rectangle: use the corners of the rectangle
-            decryptedText += matrix[row1][col2];
-            decryptedText += matrix[row2][col1];
+            if(!f_cap)
+                decryptedText += tolower(matrix[row1][(col1) % 5]);
+            else
+                decryptedText += matrix[row1][(col1) % 5];
+            if(!s_cap)
+                decryptedText += tolower(matrix[row2][(col2) % 5]);
+            else
+                decryptedText += matrix[row2][(col2) % 5];
         }
     }
 
