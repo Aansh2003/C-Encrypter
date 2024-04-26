@@ -17,6 +17,8 @@ cmake --build .
 
 ## Implemented
 
+Current support available for - Alphabets, ASCII, Unicode (UTF-8)
+
 - [x] Caesar cipher
 - [ ] Monoalphabetic cipher
 
