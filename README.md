@@ -35,5 +35,5 @@ String size - 10000000  characters.
 | Algorithm     | Time taken | OpenMP time taken | speedup |
 | :------------:| :---------:| :----------------:| :------:|
 | Caesar Cipher | 108 ms     | 36 ms             | 3.0     |
-| MA Cipher     |            |                   |         |
+| MA Cipher     | 260 ms     | 153 ms            | 1.7     |
 
