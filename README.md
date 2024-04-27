@@ -38,5 +38,5 @@ String size - 10000000  characters.
 | :------------:| :---------:| :----------------:| :------:|
 | Caesar Cipher | 108 ms     | 36 ms             | 3.0     |
 | MA Cipher     | 260 ms     | 153 ms            | 1.7     |
-| PF Cipher     | 290 ms     | N/A               | N/A     |
+| PF Cipher     | 460 ms     | N/A               | N/A     |
 
